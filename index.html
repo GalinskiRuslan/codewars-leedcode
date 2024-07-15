@@ -7,16 +7,16 @@
   </head>
   <body></body>
   <script>
-    var reduce = function (nums, fn, init) {
-      for (let i = 0; i < nums.length; i++) {
-        init = fn(init, nums[i]);
+    var map = function (arr, fn) {
+      for (let i = 0; i < arr.length; i++) {
+        arr[i] = fn(arr[i], i);
       }
-      return init;
+      return arr;
     };
 
-    const fn = function sum(accum, curr) {
-      return accum + curr;
+    fn = function plusI(n, i) {
+      return n + i;
     };
-    console.log(reduce([1, 2, 3, 4], fn, 0));
+    console.log(map([1, 2, 3], fn));
   </script>
 </html>
