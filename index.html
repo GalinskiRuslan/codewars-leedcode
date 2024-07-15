@@ -7,19 +7,25 @@
   </head>
   <body></body>
   <script>
-    var filter = function (arr, fn) {
-      const newArr = [];
-      for (let i = 0; i < arr.length; i++) {
-        if ((fn(arr[i]), i)) {
-          newArr.push(arr[i]);
+    var sumOfIntegersInString = function (s) {
+      let sum = 0;
+      let newWord = "";
+      for (let i = 0; i < s.length; i++) {
+        console.log();
+        if (!/\D/g.test(s[i])) {
+          newWord = newWord + s[i];
+        } else {
+          sum += Number(newWord);
+          newWord = "";
         }
       }
-      return newArr;
+      return (sum += Number(newWord));
     };
-
-    const fn = function greaterThan10(n) {
-      return n > 10;
-    };
-    console.log(filter([10, 20, 30], fn));
+    console.log(
+      sumOfIntegersInString(
+        "The30quick20brown10f0x1203jumps914ov3r1349the102l4zy dog"
+      )
+    );
+    console.log(sumOfIntegersInString("12.4"));
   </script>
 </html>
