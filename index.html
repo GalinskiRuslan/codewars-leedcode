@@ -7,25 +7,58 @@
   </head>
   <body></body>
   <script>
-    var sumOfIntegersInString = function (s) {
-      let sum = 0;
-      let newWord = "";
-      for (let i = 0; i < s.length; i++) {
-        console.log();
-        if (!/\D/g.test(s[i])) {
-          newWord = newWord + s[i];
-        } else {
-          sum += Number(newWord);
-          newWord = "";
+    function sortByIncrement(arr) {
+      if (arr.length <= 1) {
+        return arr;
+      }
+      let pivot = arr[Math.floor(arr.length / 2)];
+      let left = [];
+      let right = [];
+      for (let i = 0; i < arr.length; i++) {
+        if (i !== Math.floor(arr.length / 2)) {
+          if (arr[i] < pivot) {
+            left.push(arr[i]);
+          } else {
+            right.push(arr[i]);
+          }
         }
       }
-      return (sum += Number(newWord));
-    };
-    console.log(
-      sumOfIntegersInString(
-        "The30quick20brown10f0x1203jumps914ov3r1349the102l4zy dog"
-      )
-    );
-    console.log(sumOfIntegersInString("12.4"));
+      return sortByIncrement(left).concat(pivot, sortByIncrement(right));
+    }
+    console.log(sortByIncrement([11, 45, 1, 54, 78, 65, 76, 867, 12, 76]));
+    // function quickSort(arr) {
+    //   // Базовый случай: массив длиной 0 или 1 уже отсортирован
+    //   if (arr.length <= 1) {
+    //     return arr;
+    //   }
+
+    //   // Выбираем опорный элемент
+    //   let pivot = arr[Math.floor(arr.length / 2)];
+
+    //   // Массивы для элементов, меньших и больших опорного элемента
+    //   let left = [];
+    //   let right = [];
+
+    //   // Проходим по всем элементам, разделяя их на меньшие и большие по сравнению с опорным
+    //   for (let i = 0; i < arr.length; i++) {
+    //     if (i !== Math.floor(arr.length / 2)) {
+    //       // Пропускаем опорный элемент
+    //       if (arr[i] < pivot) {
+    //         left.push(arr[i]);
+    //       } else {
+    //         right.push(arr[i]);
+    //       }
+    //     }
+    //   }
+
+    //   // Рекурсивно сортируем левую и правую части и объединяем с опорным элементом
+    //   return quickSort(left).concat(pivot, quickSort(right));
+    // }
+
+    // // Пример использования
+    // let array = [34, 7, 23, 32, 5, 62, 63, 11, 1, 23, 43, 56];
+    // console.log("Неотсортированный массив: ", array);
+    // let sortedArray = quickSort(array);
+    // console.log("Отсортированный массив: ", sortedArray);
   </script>
 </html>
