@@ -7,27 +7,40 @@
   </head>
   <body></body>
   <script>
-    class EventEmitter {
-      _events = {};
-      subscribe(eventName, callback) {
-        const events = this._events[eventName] ?? [];
-        events.push(callback);
-        this._events[eventName] = events;
-        return {
-          unsubscribe: () => {
-            const events = this._events[eventName] ?? [];
-            this._events[eventName] = events.filter((cb) => cb !== callback);
-            if (this._events[eventName].length === 0) {
-              delete this._events[eventName];
-            }
-          },
-        };
-      }
-      emit(eventName, args = []) {
-        const events = this._events[eventName] ?? [];
-        const results = [];
-        events.forEach((cb) => results.push(cb(...args)));
-      }
-    }
+    /**
+     * @param {number[]} nums
+     * @return {void}
+     */
+    var ArrayWrapper = function (nums) {
+      this.nums = nums;
+    };
+
+    /**
+     * @return {number}
+     */
+    ArrayWrapper.prototype.valueOf = function () {
+      return this.nums.reduce(
+        (previousValue, currentValue) => previousValue + currentValue,
+        0
+      );
+    };
+
+    /**
+     * @return {string}
+     */
+    ArrayWrapper.prototype.toString = function () {
+      return `[${this.nums.toString()}]`;
+    };
+
+    /**
+     * const obj1 = new ArrayWrapper([1,2]);
+     * const obj2 = new ArrayWrapper([3,4]);
+     * obj1 + obj2; // 10
+     * String(obj1); // "[1,2]"
+     * String(obj2); // "[3,4]"
+     */
+    let arr1 = new ArrayWrapper([1, 2]);
+    let arr2 = new ArrayWrapper([3, 4]);
+    console.log(arr1 + arr2); // 10
   </script>
 </html>
